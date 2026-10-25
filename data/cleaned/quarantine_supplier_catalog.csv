@@ -1,0 +1,14 @@
+supplier_id,sku,lead_time,moq,pack_size,unit_cost_thb,catalog_updated_at,product_id,reason,lead_time_days,supplier_name,supplier_status,flags
+SUP-04,SKU-0099,10,12,1,150,2026-07-15T09:00:00+07:00,,SKU not found in products.csv,,,,
+SUP-02,SKU-0057,12,-12,1,173,2026-07-20 09:00:00+07:00,SKU-0057,invalid_moq,12,Northern Textile Partners (synthetic),active,invalid_moq
+SUP-01,SKU-0039,TBC,20,1,383,2026-07-25 09:00:00+07:00,SKU-0039,lead_time_unclear,,Siam Kitchenware Co. (synthetic),active,lead_time_unclear
+SUP-02,SKU-0070,14,12,1,387,2026-07-20 09:00:00+07:00,SKU-0070,cost_above_price,14,Northern Textile Partners (synthetic),active,cost_above_price
+SUP-01,SKU-KT-104,6,10,1,742,2026-07-25 09:00:00+07:00,SKU-KT-104,multiple_suppliers,6,Siam Kitchenware Co. (synthetic),active,multiple_suppliers
+SUP-06,SKU-0005,15,48,1,481,2026-03-01 09:00:00+07:00,SKU-0005,stale_catalog;multiple_suppliers,15,Old Catalog Trading (synthetic),active,stale_catalog;multiple_suppliers
+SUP-03,SKU-0030,5,0,2,417,2026-07-28 09:00:00+07:00,SKU-0030,invalid_moq,5,Bangna Bath & Home (synthetic),active,invalid_moq
+SUP-03,SKU-0005,6,24,1,481,2026-07-28 09:00:00+07:00,SKU-0005,multiple_suppliers,6,Bangna Bath & Home (synthetic),active,multiple_suppliers
+SUP-03,SKU-0021,1-2 weeks,12,1,465,2026-07-28 09:00:00+07:00,SKU-0021,lead_time_unclear,,Bangna Bath & Home (synthetic),active,lead_time_unclear
+SUP-01,SKU-0025,6,10,6,78,2026-07-25 09:00:00+07:00,SKU-0025,multiple_suppliers,6,Siam Kitchenware Co. (synthetic),active,multiple_suppliers
+SUP-03,SKU-0050,,6,6,102,2026-07-28 09:00:00+07:00,SKU-0050,lead_time_unclear,,Bangna Bath & Home (synthetic),active,lead_time_unclear
+SUP-05,SKU-KT-104,15,48,1,742,2026-07-29 09:00:00+07:00,SKU-KT-104,supplier_on_hold;multiple_suppliers,15,Eastern Appliance Import (synthetic),on_hold,supplier_on_hold;multiple_suppliers
+SUP-06,SKU-0025,15,48,6,78,2026-03-01 09:00:00+07:00,SKU-0025,stale_catalog;multiple_suppliers,15,Old Catalog Trading (synthetic),active,stale_catalog;multiple_suppliers

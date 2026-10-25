@@ -1,0 +1,2 @@
+order_id,customer_id,order_date,promised_date,export_status,exported_at,order_date_clean,date_quality,reason,product_id,quantity
+ORD-260730-2201,CUS-00077,07/08/2026,,processing,2026-07-31T06:00:00+07:00,,ambiguous,order_date ambiguous: excluded from demand,SKU-0005,1

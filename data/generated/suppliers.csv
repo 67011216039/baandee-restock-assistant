@@ -1,0 +1,7 @@
+supplier_id,supplier_name,contact_email,status,updated_at
+SUP-01,Siam Kitchenware Co. (synthetic),sup-01@example.test,active,2026-07-25T09:00:00+07:00
+SUP-02,Northern Textile Partners (synthetic),sup-02@example.test,active,2026-07-20T09:00:00+07:00
+SUP-03,Bangna Bath & Home (synthetic),sup-03@example.test,active,2026-07-28T09:00:00+07:00
+SUP-04,Easy Storage Supply (synthetic),sup-04@example.test,active,2026-07-15T09:00:00+07:00
+SUP-05,Eastern Appliance Import (synthetic),sup-05@example.test,on_hold,2026-07-29T09:00:00+07:00
+SUP-06,Old Catalog Trading (synthetic),sup-06@example.test,active,2026-03-01T09:00:00+07:00

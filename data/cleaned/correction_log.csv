@@ -1,0 +1,19 @@
+table,record,column,raw,clean,rule
+products,SKU-0019,category,storage,Storage,explicit category map
+products,SKU-0023,category,Bed room,Bedding,explicit category map
+products,SKU-0038,category,kitchen,Kitchen,explicit category map
+products,SKU-0046,category,Bed room,Bedding,explicit category map
+products,SKU-0057,category,bedding,Bedding,explicit category map
+products,SKU-0069,category,Bed room,Bedding,explicit category map
+products,SKU-0076,category,bedding,Bedding,explicit category map
+products,SKU-KT-104,category,kitchen,Kitchen,explicit category map
+products,SKU-BD-220,category,Bed room,Bedding,explicit category map
+orders,ORD-260728-1842,order_date,28/07/2026,2026-07-28,dd/mm/yyyy: day > 12 so only one reading
+supplier_catalog,SUP-01/' SKU-0033 ',sku, SKU-0033 ,SKU-0033,trim/upper/dash/zero-pad; result must exist in products.csv
+supplier_catalog,SUP-03/'sku-0012',sku,sku-0012,SKU-0012,trim/upper/dash/zero-pad; result must exist in products.csv
+supplier_catalog,SUP-01/'sku 0045',sku,sku 0045,SKU-0045,trim/upper/dash/zero-pad; result must exist in products.csv
+supplier_catalog,SUP-03/'SKU0027',sku,SKU0027,SKU-0027,trim/upper/dash/zero-pad; result must exist in products.csv
+supplier_catalog,SUP-03/'SKU-61',sku,SKU-61,SKU-0061,trim/upper/dash/zero-pad; result must exist in products.csv
+supplier_catalog,SUP-02/SKU-0008,lead_time,2 weeks,14,unit conversion (days/d/weeks)
+supplier_catalog,SUP-01/SKU-0016,lead_time,7d,7,unit conversion (days/d/weeks)
+supplier_catalog,SUP-02/SKU-0003,lead_time,5 days,5,unit conversion (days/d/weeks)

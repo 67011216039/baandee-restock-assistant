@@ -1,0 +1,727 @@
+{
+  "down_suppliers": [
+    "SUP-06"
+  ],
+  "records": {
+    "SUP-03|SKU-0001": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0001",
+      "lead_time_days": 13,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": "Delay notice: factory maintenance, +6 days.",
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0002": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0002",
+      "lead_time_days": 10,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0003": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0003",
+      "lead_time_days": 12,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0004": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0004",
+      "lead_time_days": 7,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0005": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0005",
+      "lead_time_days": 6,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0006": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0006",
+      "lead_time_days": 15,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0007": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0007",
+      "lead_time_days": 10,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0008": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0008",
+      "lead_time_days": 12,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0009": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0009",
+      "lead_time_days": 6,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0010": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0010",
+      "lead_time_days": 6,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0011": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0011",
+      "lead_time_days": 8,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0012": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0012",
+      "lead_time_days": 5,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0013": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0013",
+      "lead_time_days": 12,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0014": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0014",
+      "lead_time_days": 6,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0015": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0015",
+      "lead_time_days": 17,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0016": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0016",
+      "lead_time_days": 10,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0017": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0017",
+      "lead_time_days": 8,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0018": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0018",
+      "lead_time_days": 7,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0019": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0019",
+      "lead_time_days": 13,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0020": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0020",
+      "lead_time_days": 8,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0022": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0022",
+      "lead_time_days": 12,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0023": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0023",
+      "lead_time_days": 17,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0024": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0024",
+      "lead_time_days": 15,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0025": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0025",
+      "lead_time_days": 6,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0026": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0026",
+      "lead_time_days": 17,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0027": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0027",
+      "lead_time_days": 6,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0028": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0028",
+      "lead_time_days": 9,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0029": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0029",
+      "lead_time_days": 10,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0030": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0030",
+      "lead_time_days": 5,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0031": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0031",
+      "lead_time_days": 13,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0032": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0032",
+      "lead_time_days": 10,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0033": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0033",
+      "lead_time_days": 6,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0034": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0034",
+      "lead_time_days": 17,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0035": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0035",
+      "lead_time_days": 15,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0036": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0036",
+      "lead_time_days": 9,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0037": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0037",
+      "lead_time_days": 8,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0038": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0038",
+      "lead_time_days": 7,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0039": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0039",
+      "lead_time_days": 9,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": "Lead time confirmed by supplier (catalog said TBC).",
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0040": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0040",
+      "lead_time_days": 16,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0041": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0041",
+      "lead_time_days": 15,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0042": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0042",
+      "lead_time_days": 9,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0043": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0043",
+      "lead_time_days": 11,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0044": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0044",
+      "lead_time_days": 9,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0045": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0045",
+      "lead_time_days": 8,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0046": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0046",
+      "lead_time_days": 17,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0047": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0047",
+      "lead_time_days": 13,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0049": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0049",
+      "lead_time_days": 12,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0051": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0051",
+      "lead_time_days": 4,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0052": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0052",
+      "lead_time_days": 14,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0053": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0053",
+      "lead_time_days": 10,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0054": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0054",
+      "lead_time_days": 9,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0055": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0055",
+      "lead_time_days": 7,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0056": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0056",
+      "lead_time_days": 10,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0057": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0057",
+      "lead_time_days": 12,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0058": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0058",
+      "lead_time_days": 13,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0059": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0059",
+      "lead_time_days": 8,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0060": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0060",
+      "lead_time_days": 10,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0061": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0061",
+      "lead_time_days": 5,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0062": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0062",
+      "lead_time_days": 10,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0063": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0063",
+      "lead_time_days": 6,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0064": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0064",
+      "lead_time_days": 17,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0065": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0065",
+      "lead_time_days": 17,
+      "moq": 20,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0066": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0066",
+      "lead_time_days": 10,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0067": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0067",
+      "lead_time_days": 7,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-04|SKU-0068": {
+      "supplier_id": "SUP-04",
+      "sku": "SKU-0068",
+      "lead_time_days": 12,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0069": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0069",
+      "lead_time_days": 16,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0070": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0070",
+      "lead_time_days": 14,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0071": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0071",
+      "lead_time_days": 4,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0072": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0072",
+      "lead_time_days": 14,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0073": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0073",
+      "lead_time_days": 17,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0074": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0074",
+      "lead_time_days": 12,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0075": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0075",
+      "lead_time_days": 9,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-0076": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-0076",
+      "lead_time_days": 17,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-03|SKU-0077": {
+      "supplier_id": "SUP-03",
+      "sku": "SKU-0077",
+      "lead_time_days": 7,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0078": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0078",
+      "lead_time_days": 7,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0079": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0079",
+      "lead_time_days": 9,
+      "moq": 6,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-0080": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-0080",
+      "lead_time_days": 9,
+      "moq": 24,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-01|SKU-KT-104": {
+      "supplier_id": "SUP-01",
+      "sku": "SKU-KT-104",
+      "lead_time_days": 6,
+      "moq": 10,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-02|SKU-BD-220": {
+      "supplier_id": "SUP-02",
+      "sku": "SKU-BD-220",
+      "lead_time_days": 15,
+      "moq": 12,
+      "supplier_status": "active",
+      "notice": null,
+      "as_of": "2026-07-31T08:00:00+07:00"
+    },
+    "SUP-05|SKU-KT-104": {
+      "supplier_id": "SUP-05",
+      "sku": "SKU-KT-104",
+      "lead_time_days": 15,
+      "moq": 48,
+      "supplier_status": "on_hold",
+      "notice": "Supplier account on hold.",
+      "as_of": "2026-07-31T08:00:00+07:00"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "policy_version": "2026-07-15",
+  "delay_threshold_days": 1,
+  "rules": [
+    "State only verified order status and timestamps.",
+    "Do not promise a delivery date unless the current fulfilment record supplies one.",
+    "If the order cannot be verified, request human follow-up."
+  ]
+}
