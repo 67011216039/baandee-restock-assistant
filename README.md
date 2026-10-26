@@ -198,9 +198,9 @@ python scripts/clean_data.py               # สร้าง data/cleaned/ แ�
 
 ## 11. บทบาทสมาชิก
 
-| สมาชิก | รับผิดชอบ | ไฟล์หลัก |
+| สมาชิก | รับผิดชอบ | รับผิดชอบ |
 |---|---|---|
-| TODO | ข้อมูล, cleaning, หลักฐานคุณภาพข้อมูล | `scripts/generate_supplier_data.py`, `src/data_prep.py` |
-| TODO | Supplier API และ client | `api/main.py`, `src/supplier_client.py` |
-| TODO | กฎการตัดสินใจ และ SQLite | `src/restock.py`, `src/store.py` |
-| TODO | หน้าจอ, tests, README และการสาธิต | `src/app.py`, `tests/` |
+| TODO | 670112160 | ข้อมูล, cleaning, หลักฐานคุณภาพข้อมูล |
+| TODO | 670112160 | Supplier API และ client |
+| TODO | 670112160 | กฎการตัดสินใจ และ SQLite |
+| TODO | 670112160 | หน้าจอ, tests, README และการสาธิต |
