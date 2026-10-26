@@ -36,20 +36,20 @@ def fetch_live_terms(supplier_id: str, sku: str, base_url: str | None = None,
     try:
         resp = requests.get(url, timeout=timeout or DEFAULT_TIMEOUT)
     except requests.RequestException as exc:
-        return SupplierResult("unavailable", None, f"Cannot reach Supplier API ({type(exc).__name__})", _now())
+        return SupplierResult("unavailable", None, f"เชื่อมต่อ Supplier API ไม่ได้ ({type(exc).__name__})", _now())
 
     if resp.status_code == 404:
-        return SupplierResult("not_found", None, "Supplier has no live record for this SKU", _now())
+        return SupplierResult("not_found", None, "supplier ไม่มีข้อมูลล่าสุดของสินค้านี้", _now())
     if resp.status_code != 200:
-        return SupplierResult("unavailable", None, f"Supplier API returned HTTP {resp.status_code}", _now())
+        return SupplierResult("unavailable", None, f"Supplier API ตอบกลับ HTTP {resp.status_code}", _now())
     try:
         data = resp.json()
     except ValueError:
-        return SupplierResult("unavailable", None, "Supplier API returned invalid JSON", _now())
+        return SupplierResult("unavailable", None, "Supplier API ตอบกลับข้อมูลที่อ่านไม่ได้", _now())
     # Validate before we let the response change any decision
     missing = REQUIRED_FIELDS - set(data)
     if missing or not isinstance(data.get("lead_time_days"), int) or data["lead_time_days"] <= 0:
-        return SupplierResult("unavailable", None, f"Supplier API response failed validation ({sorted(missing) or 'lead_time_days'})", _now())
+        return SupplierResult("unavailable", None, f"ข้อมูลจาก Supplier API ไม่ผ่านการตรวจ ({sorted(missing) or 'lead_time_days'})", _now())
     if data["sku"].upper() != sku.upper() or data["supplier_id"].upper() != supplier_id.upper():
-        return SupplierResult("unavailable", None, "Supplier API returned a different record than requested", _now())
-    return SupplierResult("ok", data, "Live terms received", _now())
+        return SupplierResult("unavailable", None, "Supplier API ตอบกลับข้อมูลไม่ตรงกับที่ขอ", _now())
+    return SupplierResult("ok", data, "ได้รับข้อมูลล่าสุดแล้ว", _now())

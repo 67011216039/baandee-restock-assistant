@@ -24,12 +24,12 @@
 
 | แหล่ง | ไฟล์ / ระบบ | บทบาท | ที่มา |
 |---|---|---|---|
-| Products | `data/raw/products.csv` | ชื่อ หมวด ราคาขาย | ชุด BaanDee ของอาจารย์ |
-| Inventory | `data/raw/inventory_snapshot.csv` | สต็อก ณ เวลา `as_of` | ชุด BaanDee ของอาจารย์ |
-| Orders | `data/raw/orders.csv`, `order_lines.csv` | ยอดขาย → demand | ชุด BaanDee ของอาจารย์ |
-| **Supplier catalog** | `data/generated/supplier_catalog.csv` | supplier, lead time, MOQ, pack size, ต้นทุน | **ทีมสร้าง** |
-| **Suppliers** | `data/generated/suppliers.csv` | สถานะ supplier (active / on_hold) | **ทีมสร้าง** |
-| **Supplier API** | `api/main.py` + `api/fixtures/supplier_live.json` | lead time / MOQ / สถานะล่าสุด | **ทีมสร้าง** (mock) |
+| Products | `data/raw/products.csv` | ชื่อ หมวด ราคาขาย | ชุดข้อมูล BaanDee (ต้นฉบับ) |
+| Inventory | `data/raw/inventory_snapshot.csv` | สต็อก ณ เวลา `as_of` | ชุดข้อมูล BaanDee (ต้นฉบับ) |
+| Orders | `data/raw/orders.csv`, `order_lines.csv` | ยอดขาย → demand | ชุดข้อมูล BaanDee (ต้นฉบับ) |
+| **Supplier catalog** | `data/generated/supplier_catalog.csv` | supplier, lead time, MOQ, pack size, ต้นทุน | **ข้อมูล generated** (สังเคราะห์) |
+| **Suppliers** | `data/generated/suppliers.csv` | สถานะ supplier (active / on_hold) | **ข้อมูล generated** (สังเคราะห์) |
+| **Supplier API** | `api/main.py` + `api/fixtures/supplier_live.json` | lead time / MOQ / สถานะล่าสุด | **ข้อมูล generated** (mock API) |
 | **Purchase requests** | `data/app.db` (SQLite) | คำขอที่ผู้ใช้สร้างและแก้ไข + audit log | สร้างระหว่างใช้งาน |
 
 ```mermaid
@@ -90,7 +90,16 @@ erDiagram
   - ถ้าแก้จำนวนให้ต่างจากที่ระบบแนะนำ ต้องใส่เหตุผล
   - ถ้าจะสร้างคำขอสำหรับเคส HUMAN_REVIEW ต้องเลือก supplier และใส่เหตุผลเอง
 
-TODO (ทีม): ยืนยันหรือปรับตัวเลข 30 วัน, 7 วัน และ 90 วัน พร้อมเหตุผลของแต่ละตัว
+**เหตุผลของตัวเลขที่เลือก** (ค่าตั้งต้นของต้นแบบ ปรับได้ใน `src/restock.py` และ `src/data_prep.py`)
+
+| ค่า | ใช้ทำอะไร | เหตุผล | ข้อจำกัด |
+|---|---|---|---|
+| **30 วัน** (`DEMAND_WINDOW_DAYS`) | ช่วงยอดขายที่ใช้คำนวณ demand | ข้อมูลล่าสุดสะท้อนความต้องการปัจจุบันได้ดีกว่ายอดเฉลี่ยทั้ง 3 เดือน และยังมี order มากพอให้ค่าเฉลี่ยไม่แกว่งเกินไป | ถ้าเดือนล่าสุดมีโปรโมชัน demand จะสูงเกินจริง |
+| **7 วัน** (`SAFETY_DAYS`) | safety stock และเส้นแบ่งความเสี่ยง MEDIUM | เผื่อกรณี supplier ส่งช้าหรือยอดขายพุ่งประมาณ 1 สัปดาห์ เช่น SKU-0001 ที่ lead time เพิ่มจาก 7 เป็น 13 วันจากประกาศของ supplier | เป็นค่าคงที่เท่ากันทุกสินค้า ยังไม่ได้คิดจากความแปรปรวนของยอดขายจริง |
+| **30 วัน** (`COVER_TARGET_DAYS`) | สั่งให้พอขายอีกกี่วันหลังของมาถึง | สั่งประมาณเดือนละครั้งต่อ SKU เพื่อไม่ให้ต้องสั่งถี่ และไม่ให้ของค้างสต็อกนานเกินไป | ยังไม่ได้คิดค่าจัดเก็บหรือค่าขนส่งต่อครั้ง |
+| **90 วัน** (`STALE_CATALOG_DAYS`) | แคตตาล็อกเก่ากว่านี้ถือว่า stale | supplier ควรทบทวนราคาและเงื่อนไขอย่างน้อยทุกไตรมาส | เป็นสมมติฐานของทีม ยังไม่ได้ยืนยันกับฝ่ายจัดซื้อจริง |
+
+ตัวเลขทั้งหมดนี้เป็นสมมติฐานที่ต้องปรับเมื่อได้คุยกับผู้ใช้จริง (ดูหัวข้อ 1 ข้อ 5)
 
 ## 5. Architecture และการเชื่อมระบบ
 
@@ -185,7 +194,7 @@ python scripts/clean_data.py               # สร้าง data/cleaned/ แ�
 - demand มาจากยอดขาย 3 เดือน และ inventory มี snapshot เดียว ยังไม่รวมฤดูกาล โปรโมชัน หรือสินค้าที่กำลังขนส่งเข้ามา
 - มีคลังเดียว (BKK-DC) ข้อมูล supplier และ API เป็นข้อมูลจำลอง
 - ไม่มีระบบ login หรือสิทธิ์ผู้ใช้ ใครเปิดแอปได้ก็แก้คำขอได้
-- ข้อความเหตุผลในระบบบางส่วนยังเป็นภาษาอังกฤษ
+- ประกาศจาก supplier ใน fixture ยังเป็นภาษาอังกฤษ (จำลองข้อความที่ supplier ส่งมาเอง)
 
 ## 11. บทบาทสมาชิก
 

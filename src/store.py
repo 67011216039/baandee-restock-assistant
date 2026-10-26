@@ -62,9 +62,9 @@ def _check_qty(qty) -> int:
     try:
         q = int(qty)
     except (TypeError, ValueError):
-        raise ValidationError("Quantity must be a whole number")
+        raise ValidationError("จำนวนต้องเป็นจำนวนเต็ม")
     if q <= 0 or q > MAX_QTY:
-        raise ValidationError(f"Quantity must be between 1 and {MAX_QTY}")
+        raise ValidationError(f"จำนวนต้องอยู่ระหว่าง 1 ถึง {MAX_QTY}")
     return q
 
 
@@ -73,12 +73,12 @@ def create_request(con, *, product_id: str, supplier_id: str, quantity, suggeste
     q = _check_qty(quantity)
     note = (buyer_note or "").strip()
     if not supplier_id:
-        raise ValidationError("Choose a supplier")
+        raise ValidationError("กรุณาเลือก supplier")
     # Guardrail: a human must explain any override of the system
     if decision != "RECOMMEND" and not note:
-        raise ValidationError(f"Decision is {decision}: a buyer note explaining the choice is required")
+        raise ValidationError(f"ระบบไม่ได้แนะนำ ({decision}) ผู้ซื้อต้องใส่เหตุผล")
     if suggested_qty and q != suggested_qty and not note:
-        raise ValidationError(f"Quantity differs from suggested {suggested_qty}: add a buyer note")
+        raise ValidationError(f"จำนวนต่างจากที่ระบบแนะนำ ({suggested_qty} ชิ้น) ต้องใส่เหตุผล")
     now = _now()
     cur = con.execute(
         "INSERT INTO purchase_requests (product_id, supplier_id, quantity, suggested_qty, decision, status,"
@@ -105,20 +105,20 @@ def list_requests(con, include_deleted: bool = False) -> list[dict]:
 def update_request(con, request_id: int, **changes) -> dict:
     current = get_request(con, request_id)
     if current is None:
-        raise ValidationError(f"Request {request_id} not found")
+        raise ValidationError(f"ไม่พบคำขอ #{request_id}")
     if current["status"] == "cancelled":
-        raise ValidationError("Cancelled requests cannot be edited")
+        raise ValidationError("คำขอที่ยกเลิกแล้วแก้ไขไม่ได้")
     unknown = set(changes) - set(EDITABLE)
     if unknown:
-        raise ValidationError(f"Cannot edit: {sorted(unknown)}")
+        raise ValidationError(f"แก้ไขฟิลด์นี้ไม่ได้: {sorted(unknown)}")
     if "quantity" in changes:
         changes["quantity"] = _check_qty(changes["quantity"])
     if "status" in changes and changes["status"] not in STATUSES:
-        raise ValidationError(f"Status must be one of {STATUSES}")
+        raise ValidationError(f"สถานะต้องเป็นหนึ่งใน {STATUSES}")
     note = changes.get("buyer_note", current["buyer_note"]) or ""
     new_qty = changes.get("quantity", current["quantity"])
     if current["suggested_qty"] and new_qty != current["suggested_qty"] and not note.strip():
-        raise ValidationError(f"Quantity differs from suggested {current['suggested_qty']}: add a buyer note")
+        raise ValidationError(f"จำนวนต่างจากที่ระบบแนะนำ ({current['suggested_qty']} ชิ้น) ต้องใส่เหตุผล")
     now = _now()
     for key, val in changes.items():
         if str(current[key]) != str(val):
@@ -132,7 +132,7 @@ def update_request(con, request_id: int, **changes) -> dict:
 def soft_delete(con, request_id: int) -> None:
     """Cancel + hide. The row stays in the database and in audit_log."""
     if get_request(con, request_id) is None:
-        raise ValidationError(f"Request {request_id} not found")
+        raise ValidationError(f"ไม่พบคำขอ #{request_id}")
     now = _now()
     con.execute("UPDATE purchase_requests SET is_deleted = 1, status = 'cancelled', updated_at = ? WHERE id = ?",
                 (now, request_id))

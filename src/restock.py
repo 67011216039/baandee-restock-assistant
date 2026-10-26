@@ -91,14 +91,14 @@ def assess(product_id: str, use_api: bool = True, api_url: str | None = None,
     t = tables or load_tables()
     prod = t["products_clean"].set_index("product_id")
     if product_id not in prod.index:
-        return Assessment(product_id, "?", "HUMAN_REVIEW", "UNKNOWN", ["Product not found in products"])
+        return Assessment(product_id, "?", "HUMAN_REVIEW", "UNKNOWN", ["ไม่พบสินค้านี้ใน products"])
     name = prod.loc[product_id, "product_name"]
     a = Assessment(product_id, name, "HUMAN_REVIEW", "UNKNOWN", [])
 
     # --- stock and demand (BaanDee data) ---------------------------------------
     inv = t["inventory_clean"].set_index("product_id")
     if product_id not in inv.index:
-        a.reasons.append("No inventory record")
+        a.reasons.append("ไม่พบข้อมูลสต็อกของสินค้านี้")
         return a
     available = int(inv.loc[product_id, "available_qty"])
     inv_as_of = inv.loc[product_id, "as_of"]
@@ -106,15 +106,15 @@ def assess(product_id: str, use_api: bool = True, api_url: str | None = None,
     avg, units, d0, d1 = demand_for(product_id, t, as_of)
     a.avg_daily_demand = round(avg, 3)
     a.verified += [
-        Fact("Available stock (BKK-DC)", f"{available} units", "inventory_snapshot.csv", inv_as_of),
-        Fact(f"Units sold {d0} to {d1}", f"{units} units = {avg:.2f}/day", "orders.csv + order_lines.csv", f"30-day window ending {d1}"),
+        Fact("สต็อกคงเหลือ (BKK-DC)", f"{available} ชิ้น", "inventory_snapshot.csv", inv_as_of),
+        Fact(f"ยอดขาย {d0} ถึง {d1}", f"{units} ชิ้น = {avg:.2f} ชิ้น/วัน", "orders.csv + order_lines.csv", f"ช่วง 30 วัน สิ้นสุด {d1}"),
     ]
     if avg > 0:
         a.days_of_cover = round(available / avg, 1)
     q = t["quarantine_orders"]
     n_excl = int((q["product_id"] == product_id).sum()) if "product_id" in q else 0
     if n_excl:
-        a.uncertain.append(f"{n_excl} order(s) for this SKU have ambiguous dates and are excluded from demand (quarantine_orders.csv).")
+        a.uncertain.append(f"มี {n_excl} order ของสินค้านี้ที่วันที่กำกวม จึงไม่นับในยอดขาย (ดู quarantine_orders.csv)")
 
     # --- supplier options (generated catalog) ----------------------------------
     cat = t["supplier_catalog_clean"]
@@ -128,13 +128,13 @@ def assess(product_id: str, use_api: bool = True, api_url: str | None = None,
         for r in opts.itertuples()]
 
     if available == 0 and avg == 0:
-        a.uncertain.append("Stock is 0 and there were no sales in the window: demand cannot be estimated.")
+        a.uncertain.append("สต็อกเป็น 0 และไม่มียอดขายในช่วงที่คำนวณ จึงประเมินความต้องการไม่ได้")
     if opts.empty:
-        a.reasons.append("No supplier in catalog for this SKU: buyer must find a supplier.")
+        a.reasons.append("ไม่มี supplier ในแคตตาล็อกสำหรับสินค้านี้ ผู้ซื้อต้องหา supplier เอง")
         a.risk = "HIGH" if available == 0 else "UNKNOWN"
         return a
     if len(opts) > 1:
-        a.reasons.append(f"{len(opts)} suppliers with different terms: buyer must choose the preferred supplier.")
+        a.reasons.append(f"มี supplier {len(opts)} รายที่เงื่อนไขต่างกัน ผู้ซื้อต้องเลือก supplier หลักเอง")
         a.risk = "HIGH" if available == 0 else "UNKNOWN"
         return a
 
@@ -144,7 +144,7 @@ def assess(product_id: str, use_api: bool = True, api_url: str | None = None,
     lead_time, lt_source, lt_as_of = opt["lead_time_days"], "supplier_catalog.csv (unverified)", opt["catalog_updated_at"]
     moq, status = opt["moq"], ("on_hold" if "supplier_on_hold" in flags else "active")
     if "stale_catalog" in flags:
-        a.uncertain.append(f"Supplier catalog is old (updated {opt['catalog_updated_at'][:10]}).")
+        a.uncertain.append(f"แคตตาล็อก supplier เก่า (อัปเดตล่าสุด {opt['catalog_updated_at'][:10]})")
 
     # --- live supplier terms (system boundary) ---------------------------------
     if use_api:
@@ -153,54 +153,54 @@ def assess(product_id: str, use_api: bool = True, api_url: str | None = None,
         if res.outcome == "ok":
             live = res.data
             if lead_time is not None and live["lead_time_days"] != lead_time:
-                a.uncertain.append(f"Catalog lead time {lead_time} d differs from live {live['lead_time_days']} d; live value used.")
+                a.uncertain.append(f"lead time ในแคตตาล็อก {lead_time} วัน ไม่ตรงกับข้อมูลล่าสุด {live['lead_time_days']} วัน ระบบใช้ค่าล่าสุดจาก API")
             lead_time, lt_source, lt_as_of = live["lead_time_days"], "Supplier API (live)", live["as_of"]
             if moq != live["moq"]:
-                a.uncertain.append(f"Catalog MOQ {moq} differs from live MOQ {live['moq']}; live value used.")
+                a.uncertain.append(f"MOQ ในแคตตาล็อก ({moq}) ไม่ตรงกับข้อมูลล่าสุด ({live['moq']}) ระบบใช้ค่าล่าสุดจาก API")
             moq, status = live["moq"], live["supplier_status"]
             if live.get("notice"):
-                a.verified.append(Fact("Supplier notice", live["notice"], "Supplier API (live)", live["as_of"]))
+                a.verified.append(Fact("ประกาศจาก supplier", live["notice"], "Supplier API (live)", live["as_of"]))
         else:
-            a.uncertain.append(f"Supplier API {res.outcome}: {res.message}. Using catalog values, not confirmed by supplier.")
+            a.uncertain.append(f"Supplier API {res.outcome}: {res.message} ระบบใช้ค่าจากแคตตาล็อกแทน (ยังไม่ยืนยันจาก supplier)")
     else:
-        a.uncertain.append("Supplier API not called. Using catalog values, not confirmed by supplier.")
+        a.uncertain.append("ไม่ได้เรียก Supplier API ระบบใช้ค่าจากแคตตาล็อก (ยังไม่ยืนยันจาก supplier)")
 
     # --- stop conditions --------------------------------------------------------
     if lead_time is None:
-        raw = opt["lead_time_raw"] if isinstance(opt["lead_time_raw"], str) and opt["lead_time_raw"] else "blank"
-        a.reasons.append(f"Lead time unclear in catalog ('{raw}') and not confirmed by supplier API.")
+        raw = opt["lead_time_raw"] if isinstance(opt["lead_time_raw"], str) and opt["lead_time_raw"] else "ว่าง"
+        a.reasons.append(f"lead time ในแคตตาล็อกไม่ชัดเจน ('{raw}') และ Supplier API ไม่ได้ยืนยัน")
     if status != "active":
-        a.reasons.append(f"Supplier {opt['supplier_id']} is {status}.")
+        a.reasons.append(f"Supplier {opt['supplier_id']} อยู่ในสถานะ {status} (ระงับการสั่งซื้อ)")
     if moq is None or moq <= 0:
-        a.reasons.append(f"Invalid MOQ ({opt['moq']}).")
+        a.reasons.append(f"MOQ ไม่ถูกต้อง ({opt['moq']})")
     if "cost_above_price" in flags:
-        a.reasons.append("Unit cost is above selling price: check catalog with supplier.")
+        a.reasons.append("ต้นทุนสูงกว่าราคาขาย ต้องตรวจแคตตาล็อกกับ supplier")
     if a.reasons:
         return a
 
     a.lead_time_days = int(lead_time)
     if lt_source.startswith("Supplier API"):
-        a.verified.append(Fact("Lead time", f"{lead_time} days", lt_source, lt_as_of))
+        a.verified.append(Fact("Lead time", f"{lead_time} วัน", lt_source, lt_as_of))
     else:
-        a.uncertain.append(f"Lead time {lead_time} days comes from the catalog ({lt_as_of[:10]}) only.")
+        a.uncertain.append(f"lead time {lead_time} วัน มาจากแคตตาล็อก ({lt_as_of[:10]}) เท่านั้น")
 
     if avg == 0:
         a.decision, a.risk = "NO_ACTION", "OK"
-        a.reasons.append("No sales in the demand window.")
+        a.reasons.append("ไม่มียอดขายในช่วงที่คำนวณ")
         return a
     a.risk = classify_risk(a.days_of_cover, a.lead_time_days)
     if a.risk == "OK":
         a.decision = "NO_ACTION"
-        a.reasons.append(f"{a.days_of_cover} days of cover >= lead time {a.lead_time_days} + {SAFETY_DAYS} safety days.")
+        a.reasons.append(f"สต็อกพอขาย {a.days_of_cover} วัน มากกว่า lead time {a.lead_time_days} วัน + safety {SAFETY_DAYS} วัน")
     else:
         a.decision = "RECOMMEND"
         a.suggested_qty = suggest_qty(avg, available, a.lead_time_days, moq, opt["pack_size"])
         if a.risk == "HIGH":
-            a.reasons.append(f"Stock runs out in {a.days_of_cover} days, before a new order can arrive ({a.lead_time_days} days).")
+            a.reasons.append(f"สต็อกจะหมดใน {a.days_of_cover} วัน ก่อนของล็อตใหม่จะมาถึง (lead time {a.lead_time_days} วัน)")
         else:
-            a.reasons.append(f"{a.days_of_cover} days of cover is inside the {SAFETY_DAYS}-day safety buffer after lead time ({a.lead_time_days} days).")
-        a.reasons.append(f"Suggested {a.suggested_qty} units = cover lead time + {COVER_TARGET_DAYS} days + {SAFETY_DAYS} safety days, "
-                         f"at least MOQ {moq}, rounded to pack of {opt['pack_size']}.")
+            a.reasons.append(f"สต็อกพอขาย {a.days_of_cover} วัน อยู่ในช่วง safety {SAFETY_DAYS} วัน หลัง lead time ({a.lead_time_days} วัน)")
+        a.reasons.append(f"แนะนำ {a.suggested_qty} ชิ้น = พอขายช่วง lead time + {COVER_TARGET_DAYS} วัน + safety {SAFETY_DAYS} วัน "
+                         f"(ไม่ต่ำกว่า MOQ {moq} ชิ้น และปัดขึ้นให้เป็นทวีคูณของแพ็กละ {opt['pack_size']} ชิ้น)")
     return a
 
 

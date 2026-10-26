@@ -68,7 +68,7 @@ def t07_api_not_found_stops():
 
 def t08_api_unavailable_fallback_is_labelled():
     a = assess("SKU-0001", api_url=DOWN_URL)
-    labelled = any("not confirmed by supplier" in u for u in a.uncertain)
+    labelled = any("ยังไม่ยืนยันจาก supplier" in u for u in a.uncertain)
     lt_verified = any(f.label == "Lead time" for f in a.verified)
     exp = {"api": "unavailable", "decision": "RECOMMEND", "lead_time_days": 7,
            "warning_shown": True, "lead_time_in_verified": False}
