@@ -210,6 +210,6 @@ python scripts/clean_data.py               # สร้าง data/cleaned/ แ�
 | สมาชิก | รหัสนิสิต | รับผิดชอบ |
 |---|---|---|
 | กัญธิดา ผาสุข | 67011216010 | ข้อมูล, cleaning, หลักฐานคุณภาพข้อมูล |
-| TODO | 670112160 | Supplier API และ client |
+| สุทธิลักษณ์ ศรีสมรส | 67011216053 | Supplier API และ client |
 | TODO | 670112160 | กฎการตัดสินใจ และ SQLite |
 | TODO | 670112160 | หน้าจอ, tests, README และการสาธิต |
