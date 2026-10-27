@@ -209,5 +209,40 @@ def build() -> gr.Blocks:
     return demo
 
 
+def ensure_supplier_api() -> str:
+    """Start the Supplier API in a background thread if it is not already running.
+
+    The app still talks to it over HTTP (src/supplier_client.py), so the system
+    boundary is the same as running scripts/start_api.sh in a second terminal.
+    """
+    import threading
+    import time
+    from urllib.parse import urlparse
+
+    import requests
+    import uvicorn
+
+    from src.supplier_client import DEFAULT_URL
+
+    try:
+        requests.get(f"{DEFAULT_URL}/health", timeout=1)
+        return f"Supplier API already running at {DEFAULT_URL}"
+    except requests.RequestException:
+        pass
+    from api.main import app as api_app
+
+    port = urlparse(DEFAULT_URL).port or 8001
+    server = uvicorn.Server(uvicorn.Config(api_app, host="127.0.0.1", port=port, log_level="warning"))
+    threading.Thread(target=server.run, daemon=True).start()
+    for _ in range(50):
+        try:
+            requests.get(f"{DEFAULT_URL}/health", timeout=0.5)
+            return f"Supplier API started at {DEFAULT_URL}"
+        except requests.RequestException:
+            time.sleep(0.1)
+    return "WARNING: Supplier API did not start; the app will show 'unavailable'"
+
+
 if __name__ == "__main__":
-    build().launch(server_name="127.0.0.1", server_port=7860, css=CSS, theme=gr.themes.Soft())
+    print(ensure_supplier_api())
+    build().launch(server_name="127.0.0.1", server_port=7860, css=CSS, theme=gr.themes.Soft(), inbrowser=True)

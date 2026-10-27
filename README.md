@@ -138,6 +138,17 @@ Supplier API (api/main.py, :8001) ◄── HTTP GET ── src/supplier_client.
 
 ใช้ Python 3.11 ขึ้นไป
 
+### วิธีง่ายที่สุด: คำสั่งเดียว
+
+| เครื่อง | วิธีรัน |
+|---|---|
+| Windows | ดับเบิลคลิก `run_demo.bat` |
+| Mac / Linux / Codespaces | `bash run_demo.sh` |
+
+สคริปต์จะสร้าง `.venv` และติดตั้ง package ในครั้งแรก ทำความสะอาดข้อมูล เปิด Supplier API (port 8001) และแอป (port 7860) แล้วเปิดเบราว์เซอร์ให้เอง ปิดหน้าต่างเมื่อต้องการหยุด แอปยังเรียก Supplier API ผ่าน HTTP เหมือนเดิม เพียงแต่เปิด API ให้อัตโนมัติ (`ensure_supplier_api()` ใน `src/app.py`)
+
+### วิธีแยกทีละขั้น
+
 ```bash
 python -m venv .venv
 # Windows: .venv\Scripts\activate     Mac/Linux: source .venv/bin/activate
